@@ -44,13 +44,11 @@ jobs:
           cd sigv4-signing/swift/sigv4
           pod setup
           pod install --repo-update
-      - name: Debug
-        run: xcodebuild -list -workspace sigv4-signing/swift/sigv4/sigv4.xcworkspace
       - name: XCode Test
         run: >
           set -o pipefail && xcodebuild clean test -workspace
           sigv4-signing/swift/sigv4/sigv4.xcworkspace \
-          -scheme Sigv4Tests \
+          -scheme Pods-Sigv4Tests \
           -resultBundlePath TestResults \
           -enableCodeCoverage YES | xcpretty
       - name: Publish results
