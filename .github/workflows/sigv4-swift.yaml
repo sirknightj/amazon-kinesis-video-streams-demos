@@ -48,11 +48,8 @@ jobs:
         run: >
           set -o pipefail && xcodebuild clean test -workspace
           sigv4-signing/swift/sigv4/sigv4.xcworkspace \
-
-          -scheme AWSKinesisVideoWebRTCDemoApp \
-
+          -scheme Sigv4Tests \
           -resultBundlePath TestResults \
-
           -enableCodeCoverage YES | xcpretty
       - name: Publish results
         uses: kishikawakatsumi/xcresulttool@v1
