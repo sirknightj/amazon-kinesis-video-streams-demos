@@ -1,0 +1,32 @@
+name: SigV4 Java Tests
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'sigv4-signing/java/**'
+      - '.github/workflows/sigv4-java.yaml'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'sigv4-signing/java/**'
+      - '.github/workflows/sigv4-java.yaml'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Build with Maven
+        run: mvn -B clean verify --file sigv4-signing/java/SigV4Signer.java/pom.xml
