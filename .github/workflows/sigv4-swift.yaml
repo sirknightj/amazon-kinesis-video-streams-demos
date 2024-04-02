@@ -45,7 +45,7 @@ jobs:
           pod setup
           pod install --repo-update
       - name: XCode Test
-        run: set -o pipefail && xcodebuild clean test -workspace sigv4-signing/swift/sigv4/sigv4.xcworkspace -scheme unittests -resultBundlePath TestResults -enableCodeCoverage YES | xcpretty
+        run: set -o pipefail && xcodebuild clean test -workspace sigv4-signing/swift/sigv4/sigv4.xcworkspace -scheme Sigv4CLI -resultBundlePath TestResults -enableCodeCoverage YES | xcpretty
       - name: Publish results
         uses: kishikawakatsumi/xcresulttool@v1
         with:
