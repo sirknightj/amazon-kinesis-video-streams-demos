@@ -24,6 +24,7 @@ jobs:
           - mac_ver: '13'
             xc_ver: '15.0'
 
+    name: 'Build and run unit tests (MacOS ${{ matrix.config.mac_ver }}, XCode ${{ matrix.config.xc_ver }})'
     runs-on: 'macos-${{ matrix.config.mac_ver }}'
     steps:
       - name: Git - Checkout
