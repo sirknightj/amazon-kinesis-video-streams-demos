@@ -41,7 +41,7 @@ jobs:
       - name: Publish results
         uses: kishikawakatsumi/xcresulttool@v1
         with:
-          title: 'Test results (MacOS ${{ matrix.config.os }}, XCode ${{ matrix.config.xc_ver }})'
+          title: 'Test results (MacOS ${{ matrix.config.mac_ver }}, XCode ${{ matrix.config.xc_ver }})'
           path: TestResults.xcresult
           upload-bundles: never
         if: success() || failure()
