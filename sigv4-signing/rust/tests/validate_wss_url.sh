@@ -48,9 +48,8 @@ function connect_disconnect_websocket() {
 
     trap 'rm -f "${logfile}"' EXIT
 
-    if ! timeout 15s echo "Hi" | websocat -v - --ws-c-uri="$url" \
+    if ! echo "Hi" | websocat -v - --ws-c-uri="$url" \
         "ws-c:log:ssl:tcp:${domain}:443" -1 &> "${logfile}"; then
-        echo "Websocat connection timed out"
         exit 1
     fi
 
