@@ -90,7 +90,7 @@ pub async fn run(channel_name: &str, role: ChannelRole, viewer_id: Option<String
     let config = config.unwrap();
 
     // Get the channel ARN for the specified channel name
-    println!("Channel name: {}", &channel_name);
+    println!("Channel name: {}, region: {}", &channel_name, &config.region);
     let channel_arn = get_channel_arn(&config.client, &channel_name).await;
     if channel_arn.is_err() {
         return channel_arn.map(|_| ());
