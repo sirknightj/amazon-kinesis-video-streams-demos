@@ -28,13 +28,45 @@ jobs:
           toolchain: nightly
           override: true
       - name: Generate test result and coverage report
+        working-directory:  sigv4-signing/rust/
         run: |
-          cd sigv4-signing/rust;
-          cargo install cargo2junit;
-          cargo test $CARGO_OPTIONS -- -Z unstable-options --format json | cargo2junit > results.xml;
+          cargo install cargo2junit
+          cargo test $CARGO_OPTIONS -- -Z unstable-options --format json | cargo2junit > results.xml
       - name: Upload test results
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
           check_name: Test Results
           github_token: ${{ secrets.GITHUB_TOKEN }}
           files: sigv4-signing/rust/results.xml
+
+  check-sample:
+    runs-on: ubuntu-latest
+    name: Run signer sample with validation
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install websocat
+        run: |
+          curl -L https://github.com/vi/websocat/releases/download/v4.0.0-alpha2/websocat.x86_64-unknown-linux-musl -o websocat
+          chmod +x websocat
+          sudo mv websocat /usr/local/bin/
+      - name: Set up rust
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: nightly
+          override: true
+      - name: Build project
+        working-directory: sigv4-signing/rust/
+        run: cargo build
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          aws-region: us-west-2
+          role-duration-seconds: 900
+      - name: Check the sample
+        working-directory: sigv4-signing/rust/
+        run: |
+          ./tests/validate_wss_url.sh demo-channel
+        shell: bash

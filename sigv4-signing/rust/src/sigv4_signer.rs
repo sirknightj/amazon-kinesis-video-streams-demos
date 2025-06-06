@@ -1,3 +1,5 @@
+/// Custom SigV4 Signer for KVS Signaling WebSocket, ConnectAsMaster and ConnectAsViewer
+/// This one is significantly more lightweight than the sigv4_signer_using_aws libraries.
 pub mod aws_v4_signer {
     use crate::sigv4_signer_constants::constants::{
         ALGORITHM_AWS4_HMAC_SHA_256, AWS4_REQUEST_TYPE, DATE_PATTERN, METHOD, NEW_LINE_DELIMITER,
