@@ -72,5 +72,7 @@ jobs:
       - name: Check the sample
         working-directory: sigv4-signing/rust/
         run: |
+          ls tests
+          chmod +x ./tests/validate_wss_url.sh
           ./tests/validate_wss_url.sh demo-channel
         shell: bash
