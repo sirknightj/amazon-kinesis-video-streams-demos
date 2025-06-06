@@ -39,7 +39,7 @@ function check_dependencies() {
 
 # Connect and disconnect from the WebSocket
 function connect_disconnect_websocket() {
-    local url="$1asfda"
+    local url="$1"
     local domain
     domain=$(echo "$url" | sed 's|wss://\([^/]*\).*|\1|')
 
