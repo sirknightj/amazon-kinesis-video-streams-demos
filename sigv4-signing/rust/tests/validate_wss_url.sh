@@ -77,8 +77,9 @@ function mask() {
     fi
 
     # If temporary (STS) credentials are used
+    # Use '|| true' to ignore the failing output if this parameter isn't found
     local security_token
-    security_token=$(echo "$url" | grep -o 'X-Amz-Security-Token=[^&]*' | cut -d'=' -f2)
+    security_token=$(echo "$url" | grep -o 'X-Amz-Security-Token=[^&]*' | cut -d'=' -f2 || true)
     if [[ -n "${security_token}" ]]; then
         echo "::add-mask::${security_token}"
     fi
