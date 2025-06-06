@@ -50,6 +50,7 @@ function connect_disconnect_websocket() {
 
     if ! echo "Hi" | websocat -v - --ws-c-uri="$url" \
         "ws-c:log:ssl:tcp:${domain}:443" -1 &> "${logfile}"; then
+        cat "${logfile}"
         exit 1
     fi
 
