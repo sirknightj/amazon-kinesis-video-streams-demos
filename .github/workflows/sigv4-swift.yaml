@@ -19,14 +19,17 @@ jobs:
     strategy:
       matrix:
         config:
+          # x86_64
           - mac_ver: '15-intel'
             xc_ver: '16.4'
           - mac_ver: '15-intel'
             xc_ver: '26.1.1'
+          # arm64
           - mac_ver: '15'
             xc_ver: '16.4'
           - mac_ver: '15'
             xc_ver: '26.1.1'
+      fail-fast: false
 
     name: 'Build and run unit tests (MacOS ${{ matrix.config.mac_ver }}, XCode ${{ matrix.config.xc_ver }})'
     runs-on: 'macos-${{ matrix.config.mac_ver }}'
