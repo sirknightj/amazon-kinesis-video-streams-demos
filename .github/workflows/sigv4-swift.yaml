@@ -53,4 +53,4 @@ jobs:
           title: 'Test results (MacOS ${{ matrix.config.mac_ver }}, XCode ${{ matrix.config.xc_ver }})'
           path: TestResults.xcresult
           upload-bundles: never
-        if: (success() || failure()) && ${{ matrix.config.test_results == true }}
+        if: ${{ (success() || failure()) && matrix.config.test_results == true }}
