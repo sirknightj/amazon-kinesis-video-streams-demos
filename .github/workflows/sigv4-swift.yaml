@@ -22,6 +22,7 @@ jobs:
           # x86_64
           - mac_ver: '15-intel'
             xc_ver: '16.4'
+            test_results: true
           - mac_ver: '15-intel'
             xc_ver: '26.1.1'
           # arm64
@@ -52,4 +53,4 @@ jobs:
           title: 'Test results (MacOS ${{ matrix.config.mac_ver }}, XCode ${{ matrix.config.xc_ver }})'
           path: TestResults.xcresult
           upload-bundles: never
-        if: success() || failure()
+        if: (success() || failure()) && ${{ matrix.config.test_results == true }}
