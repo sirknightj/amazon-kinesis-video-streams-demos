@@ -47,7 +47,7 @@ jobs:
       - name: XCode Test
         run: set -o pipefail && xcodebuild clean test -workspace sigv4-signing/swift/sigv4/sigv4.xcworkspace -scheme sigv4 -resultBundlePath TestResults -enableCodeCoverage YES | xcpretty
       - name: Publish results
-        uses: kishikawakatsumi/xcresulttool@v1
+        uses: slidoapp/xcresulttool@v3.1.0
         with:
           title: 'Test results (MacOS ${{ matrix.config.mac_ver }}, XCode ${{ matrix.config.xc_ver }})'
           path: TestResults.xcresult
