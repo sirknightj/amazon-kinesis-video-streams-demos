@@ -5,12 +5,14 @@ on:
     branches:
       - master
     paths:
-      - canary
+      - canary/webrtc-c/**
+      - .github/workflows/canary-webrtc-c.yaml
   pull_request:
     branches:
       - master
     paths:
-      - canary
+      - canary/webrtc-c/**
+      - .github/workflows/canary-webrtc-c.yaml
 
 env:
   DEBIAN_FRONTEND: noninteractive
